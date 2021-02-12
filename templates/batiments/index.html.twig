@@ -1,0 +1,56 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Batiments{% endblock %}
+{% block titrePage %} Liste des batiments {% endblock %}
+
+{% block body %}
+    <a class="btn btn-dark mb-2 " href="{{ path('app_batiment_create') }}"> Ajouter un batiment</a>
+
+    {% for batiment in batiments %}
+        <div class="row ">
+            <h1><a href=""> {{ batiment.codeBatiment}}</a></h1>
+            <div class="col-5">
+                <a type ="submit" class="btn btn-secondary " href="{{ path('app_batiment_edit',{'id': batiment.id}) }}">Modifier</a>
+
+                <form method="post" style="display:inline-block"
+                      action="{{ path('app_batiment_delete',{'id': batiment.id}) }}">
+                    <input type="hidden" name="_method" value="delete">
+                    <input type="hidden" name="_token" value="{{  csrf_token('DELETE' ~ batiment.id ) }}">
+                    <input type="submit" class="btn btn-danger" value="Supprimer">
+                </form>
+            </div>
+
+        </div>
+        {% for sal in batiment.salles %}
+
+
+            <div class="row ">
+                <div class="col text-center">
+                    <img src="{{  sal.photo }}" alt="{{ sal.id }}">
+                </div>
+
+
+                <div class="col-6">
+                    <h1> <a href=""> Salle {{ sal.id}}</a></h1>
+                    <p>{{ sal.description }}</p>
+
+
+                    <a class="btn btn-secondary mb-5" href="{{ path('app_salle_edit',{'id': sal.id}) }}">Modifier la salle</a>
+
+                    <form method="post" style="display:inline-block"
+                          action="{{ path('app_salle_delete',{'id': sal.id}) }}">
+                        <input type="hidden" name="_method" value="delete">
+                        <input type="hidden" name="_token" value="{{  csrf_token('DELETE' ~ sal.id ) }}">
+                        <input type="submit" class="btn btn-danger" value="Supprimer">
+                    </form>
+
+                </div>
+
+
+
+
+            </div>
+        {% endfor %}
+    {% endfor %}
+
+{% endblock %}

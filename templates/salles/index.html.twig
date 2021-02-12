@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste Salles{% endblock %}
+
+{% block titrePage %} Liste des salles {% endblock %}
+
+{% block body %}
+    <a class="btn btn-dark mb-2 " href="{{ path('app_salle_create') }}"> Ajouter une salle </a>
+    {%  for salle in salles %}
+
+        <div class="row">
+            <div class="col text-center">
+                <img src="{{ salle.photo }}" alt="{{ salle.id }}">
+            </div>
+            <div class="col-5 ">
+                <h1><a href=""> Salle {{ salle.id}}</a></h1>
+                <p>{{ salle.description }}</p>
+
+
+            </div>
+
+            <a class="btn btn-secondary mb-5" href="{{ path('app_salle_edit',{'id': salle.id}) }}">Modifier la salle</a>
+
+
+
+        </div>
+
+    {% endfor %}
+
+
+{% endblock %}
+

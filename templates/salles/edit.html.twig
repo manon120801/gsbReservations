@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Modifier la salle{% endblock %}
+ {% block monTitre %}Modifier une salle {% endblock %}
+{% block body %}
+    {{ form_start(form) }}
+    {{ form_row(form.code_salle, {
+        'attr' : {'placeholder' : "Saisir le numero de la salle"},
+        'label' : "Numero de salle "
+    })
+    }}
+    {{ form_row(form.description) }}
+    {{ form_row(form.nbr_chaises) }}
+    {{ form_row(form.nbr_tables) }}
+    {{ form_row(form.photo) }}
+    {{ form_row(form.Batiments, {'label' : 'Code batiment '}) }}
+    {{ form_row(form.Surface, {'label' : 'surface'} )}}
+    <input type="submit" class="btn btn-primary" value="Modifier">
+
+    {{ form_end(form) }}
+{% endblock %}

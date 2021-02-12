@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Modifier batiment{% endblock %}
+ {% block monTitre %}Modifier un batiment {% endblock %}
+{% block body %}
+    {{ form_start(form) }}
+    {{ form_row(form.code_batiment, {
+        'attr' : {'placeholder' : "Saisir le code batiment"},
+        'label' : "Code Batiment "
+    })
+    }}
+    {{ form_row(form.description) }}
+    {{ form_row(form.nbr_salles) }}
+    {{ form_row(form.nbr_etages) }}
+    {{ form_row(form.acsenseur) }}
+
+    {{ form_row(form.photo) }}
+    {{ form_row(form.Agences, {'label' : 'nom agence '}) }}
+
+    <input type="submit" class="btn btn-primary" value="Modifier">
+
+    {{ form_end(form) }}
+{% endblock %}
